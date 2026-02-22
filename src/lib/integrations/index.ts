@@ -13,7 +13,7 @@
 
 // Stripe - Payment processing
 export {
-  stripe,
+  getStripe,
   createCheckoutSession,
   constructWebhookEvent,
 } from './stripe';

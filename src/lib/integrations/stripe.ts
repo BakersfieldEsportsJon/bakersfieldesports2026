@@ -1,8 +1,19 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || '', {
-  apiVersion: '2025-12-18.acacia' as any,
-});
+let _stripe: Stripe | null = null;
+
+function getStripe(): Stripe {
+  if (!_stripe) {
+    const key = process.env.STRIPE_SECRET_KEY;
+    if (!key) {
+      throw new Error('STRIPE_SECRET_KEY is not set');
+    }
+    _stripe = new Stripe(key, {
+      apiVersion: '2025-12-18.acacia' as any,
+    });
+  }
+  return _stripe;
+}
 
 export interface CheckoutSessionParams {
   priceId?: string;
@@ -26,7 +37,7 @@ export async function createCheckoutSession(params: CheckoutSessionParams) {
         quantity: 1,
       }];
 
-  const session = await stripe.checkout.sessions.create({
+  const session = await getStripe().checkout.sessions.create({
     payment_method_types: ['card'],
     line_items: lineItems,
     mode: 'payment',
@@ -41,7 +52,7 @@ export async function createCheckoutSession(params: CheckoutSessionParams) {
 
 export async function constructWebhookEvent(payload: string | Buffer, sig: string) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!;
-  return stripe.webhooks.constructEvent(payload, sig, webhookSecret);
+  return getStripe().webhooks.constructEvent(payload, sig, webhookSecret);
 }
 
-export { stripe };
+export { getStripe };
