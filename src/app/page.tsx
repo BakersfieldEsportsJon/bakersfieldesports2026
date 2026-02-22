@@ -22,7 +22,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { cn } from '@/lib/utils';
+import { cn, assetPath } from '@/lib/utils';
 import { fallbackEvents } from '@/data/events';
 import { rates } from '@/data/rates';
 import { partners } from '@/data/partners';
@@ -388,7 +388,7 @@ export default function HomePage() {
                 >
                   {partner.logoUrl ? (
                     <Image
-                      src={partner.logoUrl}
+                      src={assetPath(partner.logoUrl!)}
                       alt={partner.name}
                       width={140}
                       height={48}

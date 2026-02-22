@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { Menu, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, assetPath } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 
 const navLinks = [
@@ -52,7 +52,7 @@ export function Header() {
           aria-label="Bakersfield eSports Center - Home"
         >
           <Image
-            src="/images/bec-logo-white.svg"
+            src={assetPath("/images/bec-logo-white.svg")}
             alt="Bakersfield eSports Center"
             width={160}
             height={40}

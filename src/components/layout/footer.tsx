@@ -10,7 +10,7 @@ import {
   Phone,
   Clock,
 } from "lucide-react"
-import { cn } from "@/lib/utils"
+import { cn, assetPath } from "@/lib/utils"
 
 const quickLinks = [
   { href: "/", label: "Home" },
@@ -189,7 +189,7 @@ export function Footer() {
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center gap-3">
               <Image
-                src="/images/bec-logo-white.svg"
+                src={assetPath("/images/bec-logo-white.svg")}
                 alt="Bakersfield eSports Center"
                 width={120}
                 height={30}

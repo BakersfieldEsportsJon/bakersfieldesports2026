@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
+import { assetPath } from "@/lib/utils"
 import {
   Handshake,
   Mail,
@@ -112,7 +113,7 @@ export default function PartnershipsPage() {
                     {partner.logoUrl && (
                       <div className="mb-3 flex h-16 items-center">
                         <Image
-                          src={partner.logoUrl}
+                          src={assetPath(partner.logoUrl!)}
                           alt={partner.name}
                           width={180}
                           height={60}
