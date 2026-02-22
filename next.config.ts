@@ -42,6 +42,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   output: "export",
+  basePath: "/bakersfieldesports2026",
   reactStrictMode: true,
 
   images: {
